@@ -5,6 +5,8 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 // Setup the /controller/actionmethod routing
 app.MapDefaultControllerRoute();
 

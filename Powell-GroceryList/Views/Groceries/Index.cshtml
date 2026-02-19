@@ -1,11 +1,18 @@
-﻿@model Powell_GroceryList.Models.GroceryItem
+﻿@model List<Powell_GroceryList.Models.GroceryItem>
 <html>
     <head>
         <title> Grocery list</title>
+        <link href="~/lib/bootstrap/dist/css/bootstap.css" rel="stylesheet" />
     </head>
     <body>
         <h3>Groceries!</h3>
-
-        <h4>@Model.Name from @Model.Store</h4>
+        <div class="container">
+            <div class="row">
+    @foreach (var groceryItem in @Model)
+    {
+        <h4>@groceryItem.Name from @groceryItem.Store</h4>
+    }
+        </div>
+    </div>
     </body>
 </html>
