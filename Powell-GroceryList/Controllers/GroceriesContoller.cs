@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Powell_GroceryList.Models;
 
 namespace Powell_GroceryList.Controllers
 {
@@ -6,7 +7,10 @@ namespace Powell_GroceryList.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            GroceryItem bananas = new GroceryItem();
+            bananas.Name = "Bananas";
+            bananas.Store = "Piggy Wiggly";
+            return View(bananas);
         }
     }
 }

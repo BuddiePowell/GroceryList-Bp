@@ -7,8 +7,4 @@
     <RootNamespace>Powell_GroceryList</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>
