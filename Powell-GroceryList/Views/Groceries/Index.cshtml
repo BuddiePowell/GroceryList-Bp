@@ -2,7 +2,7 @@
 <html>
     <head>
         <title> Grocery list</title>
-        <link href="~/lib/bootstrap/dist/css/bootstap.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     </head>
     <body>
         <h3>Groceries!</h3>
@@ -10,7 +10,7 @@
             <div class="row">
     @foreach (var groceryItem in @Model)
     {
-        <h4>@groceryItem.Name from @groceryItem.Store</h4>
+        <div class="col-sm-3">@groceryItem.Name from @groceryItem.Store</div>
     }
         </div>
     </div>
