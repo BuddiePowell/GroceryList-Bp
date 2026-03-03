@@ -1,0 +1,32 @@
+﻿@model Powell_GroceryList.Models.GroceryItem
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Add Grocery item";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+
+            <form method="post" action="Create">
+
+                <div class="form-group">
+                    <label asp-for="Name">Item Name</label>
+                    <input asp-for="Name" class="form-control"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Store">Store Name</label>
+                    <input asp-for="Store" class="form-control" />
+                    <span asp-validation-for="Store" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-info">Add Item</button>
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -27,5 +27,23 @@ namespace Powell_GroceryList.Controllers
 
             return View(groceryItems);
         }
+
+        [HttpGet]
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(GroceryItem groceryItem)
+        {
+            if (ModelState.IsValid == true)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(groceryItem);
+        }
     }
 }
