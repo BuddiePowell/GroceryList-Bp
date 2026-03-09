@@ -15,7 +15,7 @@ namespace Powell_GroceryList.Controllers
 
             GroceryItem milk = new GroceryItem();
             milk.Name = "Milk";
-            bananas.Store = "Piggy Wiggly";
+            milk.Store = "Piggy Wiggly";
 
             GroceryItem avocadoes = new GroceryItem();
             avocadoes.Name = "Avocadoes";
