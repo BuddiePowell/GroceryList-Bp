@@ -1,30 +1,28 @@
 ﻿using MySql.Data.MySqlClient;
+using Powell_GroceryList.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 
-namespace Powell_GroceryList.Services
+namespace Powell_GroceryList.Database
 {
     public class GroceryDatabaseContext
     {
-        private String _connectionString;
+        private string _connectionString;
 
-        public GroceryDatabaseContext(String connectionString)
+        public GroceryDatabaseContext(string connectionString)
         {
             _connectionString = connectionString;
         }
 
         public MySqlConnection GetConnection()
         {
-            _connectionString = "sever=introduction-to-databases.mysql.database.azure.com;port=3306;database=introduction-to-databases.mysql.database.azure.com;"
-                    + "user=bpowell5;password=s2989121";
+            _connectionString = "server=introduction-to-databases.mysql.database.azure.com;port=3306;database=introduction_to_databases;user=bpowell5;password=s2989121;";
 
-            return new MySqlConnection( _connectionString );
-
-           
+            return new MySqlConnection(_connectionString);
         }
-        Public List<GroceryItem> GetAllGroceryitems() {
+
+        public List<GroceryItem> GetAllGroceryItems()
+        {
             List<GroceryItem> groceryItems = new List<GroceryItem>();
 
             MySqlConnection connection;
@@ -39,22 +37,24 @@ namespace Powell_GroceryList.Services
             sqlCommand.Connection = connection;
 
             dataReader = sqlCommand.ExecuteReader();
+
             while (dataReader.Read())
             {
                 GroceryItem groceryItem = new GroceryItem();
-                groceryItem.id = dataReader.GetInt32("id");
-                groceryItem.Name = dataReader.GetString("name");
-                groceryItem.Store = new Store();
-                groceryItem.Store.Id = dataReader.GetInt32("Storeid");
 
-                groceryItems.Add( groceryItem );
+                groceryItem.Id = dataReader.GetInt32("id");
+                groceryItem.Name = dataReader.GetString("name");
+
+                groceryItem.Store = new Store();
+                groceryItem.Store.Id = dataReader.GetInt32("storeid");
+
+                groceryItems.Add(groceryItem);
             }
 
             dataReader.Close();
             connection.Close();
 
             return groceryItems;
-
         }
     }
 }

@@ -1,26 +1,27 @@
 ﻿using Powell_GroceryList.Database;
-using Microsoft.AspNetCore.Mvc;
 using Powell_GroceryList.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Powell_GroceryList.Services;
 
 
 namespace Powell_GroceryList.Controllers
 {
     public class GroceriesController : Controller
     {
-        private GroceryDatabaseContext _DatabaseContext;
+        private GroceryDatabaseContext _databaseContext;
+        
 
         public GroceriesController(GroceryDatabaseContext databaseContext)
         {
-            _DatabaseContext = databaseContext;
+            _databaseContext = databaseContext;
         }
         public IActionResult Index()
 
         {
-            List<GroceryItem> groceryItems = _DatabaseContext.GetAllGroceryItems();
+            List<GroceryItem> groceryItems = _databaseContext.GetAllGroceryItems();
 
             return View(groceryItems);
         }
