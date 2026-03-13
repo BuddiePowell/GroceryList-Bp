@@ -20,8 +20,13 @@
 
                 <div class="form-group">
                     <label asp-for="Store">Store Name</label>
-                    <input asp-for="Store" class="form-control" />
-                    <span asp-validation-for="Store" class="text-danger"></span>
+                    <select asp-for="Store.Id" class="form-control">
+                    @foreach(var store in ViewBag.AvailableStores)
+                    {
+                        <option value="@store.Id">@store.Name</option>
+                    }
+                    </select>
+
                 </div>
 
                 <button type="submit" class="btn btn-info">Add Item</button>

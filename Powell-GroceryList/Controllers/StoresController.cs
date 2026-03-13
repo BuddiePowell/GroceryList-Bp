@@ -18,6 +18,7 @@ namespace Powell_GroceryList.Controllers
             List<Store> storeList = _databaseContext.GetAllStores();
 
             
+            
             return View(storeList);
         }
     }

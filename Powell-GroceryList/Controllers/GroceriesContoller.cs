@@ -30,6 +30,8 @@ namespace Powell_GroceryList.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.AvailableStores = _databaseContext.GetAllStores();
+
             return View();
         }
 
@@ -38,6 +40,10 @@ namespace Powell_GroceryList.Controllers
         {
             if (ModelState.IsValid == true)
             {
+                // insert the grocery items into the database
+                _databaseContext.AddGroceryitem(groceryItem);
+
+
                 return RedirectToAction("Index");
             }
 

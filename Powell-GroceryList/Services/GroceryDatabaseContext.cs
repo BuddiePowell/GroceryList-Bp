@@ -22,6 +22,24 @@ public class GroceryDatabaseContext
         return new MySqlConnection(_connectionString);
     }
 
+    public void AddGroceryitem(GroceryItem groceryItem)
+    {
+        MySqlConnection connection;
+        MySqlCommand sqlCommand;
+
+        connection = GetConnection();
+        connection.Open();
+
+        sqlCommand = new MySqlCommand();
+        sqlCommand.Connection = connection;
+        sqlCommand.CommandText = "INSERT INTO GROCERY_ITEM VALUES(NULL, @Name, @StoreId)";
+        sqlCommand.Parameters.AddWithValue("@Name", groceryItem.Name);
+        sqlCommand.Parameters.AddWithValue("@StoreId", groceryItem.StoreId);
+
+        sqlCommand.ExecuteNonQuery();
+
+        connection.Close();
+    }  
     public List<GroceryItem> GetAllGroceryItems()
     {
         List<GroceryItem> groceryItems = new List<GroceryItem>();
@@ -47,7 +65,7 @@ public class GroceryDatabaseContext
             groceryItem.Name = dataReader.GetString("Name");
 
             groceryItem.Store = new Store();
-            groceryItem.Store.Id = dataReader.GetInt32("StoreId");
+            groceryItem.StoreId = dataReader.GetInt32("StoreId");
 
             groceryItems.Add(groceryItem);
         }
@@ -57,6 +75,7 @@ public class GroceryDatabaseContext
 
         return groceryItems;
     }
+
     public List<Store> GetAllStores()
     {
         List<Store> stores = new List<Store>();
