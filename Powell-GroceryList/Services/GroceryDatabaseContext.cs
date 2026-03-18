@@ -108,6 +108,7 @@ public class GroceryDatabaseContext
         }
         dataReader.Close();
         connection.Close();
+
         return stores;
     }
     }
