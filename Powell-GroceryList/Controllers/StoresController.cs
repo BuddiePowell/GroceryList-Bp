@@ -1,26 +1,49 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Powell_GroceryList.Models;
-using Powell_GroceryList.Services;
+﻿using Powell_GroceryList.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Powell_GroceryList.Controllers
 {
     public class StoresController : Controller
-
     {
-        private GroceryDatabaseContext _databaseContext;
-
-        public StoresController(GroceryDatabaseContext databaseContext)
-        {
-            _databaseContext = databaseContext;
-        }
         public IActionResult Index()
         {
-            List<Store> storeList = _databaseContext.GetAllStores();
+            List<Store> store = new List<Store>();
+            Store pigglyWiggly = new Store();
+            pigglyWiggly.Name = "Piggly Wiggly";
+            pigglyWiggly.Address = "202 Street Address";
+            pigglyWiggly.City = "Madison";
+            pigglyWiggly.State = "WI";
+            pigglyWiggly.PhoneNumber = "608-303-2983";
 
-            
-            
-            return View(storeList);
+            Store Hyvee = new Store();
+            Hyvee.Name = "Hyvee";
+            Hyvee.Address = "123 Street Address";
+            Hyvee.City = "Milwakee";
+            Hyvee.State = "WI";
+            Hyvee.PhoneNumber = "609-405-1234";
+
+            store.Add(pigglyWiggly);
+            store.Add(Hyvee);
+            return View(store);
         }
 
+        [HttpGet]
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public IActionResult Create(Store store)
+        {
+            if (ModelState.IsValid == true)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(store);
+        }
     }
 }
