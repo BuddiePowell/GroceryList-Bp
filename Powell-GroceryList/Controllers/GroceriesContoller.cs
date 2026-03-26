@@ -41,11 +41,13 @@ namespace Powell_GroceryList.Controllers
             if (ModelState.IsValid == true)
             {
                 // insert the grocery items into the database
-                _databaseContext.AddGroceryitem(groceryItem);
+                _databaseContext.AddGroceryItem(groceryItem);
 
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.AvailableStores = _databaseContext.GetAllStores();
 
             return View(groceryItem);
         }

@@ -20,7 +20,7 @@
 
                 <div class="form-group">
                     <label asp-for="Store">Store Name</label>
-                    <select asp-for="Store.Id" class="form-control">
+                    <select asp-for="StoreId" class="form-control">
                     @foreach(var store in ViewBag.AvailableStores)
                     {
                         <option value="@store.Id">@store.Name</option>

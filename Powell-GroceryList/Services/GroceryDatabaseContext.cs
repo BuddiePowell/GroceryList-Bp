@@ -16,13 +16,11 @@ public class GroceryDatabaseContext
 
     public MySqlConnection GetConnection()
     {
-        _connectionString = "server=introduction-to-databases.mysql.database.azure.com;port=3306;database=bpowell5_grocerylist;"
-            + "user=bpowell5;password=s2989121;";
 
         return new MySqlConnection(_connectionString);
     }
 
-    public void AddGroceryitem(GroceryItem groceryItem)
+    public void AddGroceryItem(GroceryItem groceryItem)
     {
         MySqlConnection connection;
         MySqlCommand sqlCommand;
