@@ -2,6 +2,7 @@
 using Powell_GroceryList.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 
 namespace Powell_GroceryList.Services;
 
@@ -72,6 +73,29 @@ public class GroceryDatabaseContext
         connection.Close();
 
         return groceryItems;
+    }
+    public void AddStore (Store store)
+    {
+        MySqlConnection connection;
+        MySqlCommand sqlCommand;
+
+        connection = GetConnection();
+        connection.Open ();
+
+        sqlCommand = new MySqlCommand();
+        sqlCommand.Connection = connection;
+
+        sqlCommand.CommandText = "INSERT INTO STORE VALUES (NULL, @Name, @Address, @City, @State, @PhoneNumber)";
+        sqlCommand.Parameters.AddWithValue("@Name", store.Name);
+        sqlCommand.Parameters.AddWithValue("@Address", store.Address);
+        sqlCommand.Parameters.AddWithValue("@City", store.City);
+        sqlCommand.Parameters.AddWithValue("@State", store.State);
+        sqlCommand.Parameters.AddWithValue("@PhoneNumber", store.PhoneNumber);
+
+        sqlCommand.ExecuteNonQuery();
+
+        connection.Close();
+
     }
 
     public List<Store> GetAllStores()
