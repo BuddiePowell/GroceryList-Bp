@@ -27,7 +27,8 @@ namespace Powell_GroceryList.Models
 
         public List<GroceryItem> GetAllGroceryItems()
         {
-            return GroceryItems.ToList();
+            return GroceryItems.Include(groceryItem =>
+                groceryItem.Store).ToList();
         }
 
         public List<Store> GetAllStores()

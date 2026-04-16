@@ -9,10 +9,10 @@ namespace Powell_GroceryList.Models
         [Required]
        public string Name { get; set; }
 
-        public Store? Store {  get; set; }
-
 
         [Required]
         public int StoreId { get; set; }
+
+        public Store? Store { get; set; }
     }
 }

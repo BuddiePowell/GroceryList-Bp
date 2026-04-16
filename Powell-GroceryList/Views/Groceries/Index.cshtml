@@ -11,7 +11,7 @@
             <div class="row">
     @foreach (var groceryItem in @Model)
     {
-        <div class="col-sm-3">@groceryItem.Name from Store with Id: @groceryItem.StoreId</div>
+        <div class="col-sm-3">@groceryItem.Name from store: @groceryItem.Store.Name</div>
     }
         </div>
     </div>
