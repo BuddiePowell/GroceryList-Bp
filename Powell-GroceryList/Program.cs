@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped(serviceProvider => new GroceryDatabaseContext(builder.Configuration.GetConnectionString("MySQLConnection")));
+builder.Services.AddScoped<IGroceryRepository>(serviceProvider => new GroceryDatabaseContext(builder.Configuration.GetConnectionString("MySQLConnection")));
 
 var app = builder.Build();
 

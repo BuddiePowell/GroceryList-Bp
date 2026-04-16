@@ -6,7 +6,7 @@ using System.Data.SqlTypes;
 
 namespace Powell_GroceryList.Services;
 
-public class GroceryDatabaseContext
+public class GroceryDatabaseContext : IGroceryRepository
 {
     private string _connectionString;
 
@@ -38,7 +38,7 @@ public class GroceryDatabaseContext
         sqlCommand.ExecuteNonQuery();
 
         connection.Close();
-    }  
+    }
     public List<GroceryItem> GetAllGroceryItems()
     {
         List<GroceryItem> groceryItems = new List<GroceryItem>();
@@ -74,13 +74,13 @@ public class GroceryDatabaseContext
 
         return groceryItems;
     }
-    public void AddStore (Store store)
+    public void AddStore(Store store)
     {
         MySqlConnection connection;
         MySqlCommand sqlCommand;
 
         connection = GetConnection();
-        connection.Open ();
+        connection.Open();
 
         sqlCommand = new MySqlCommand();
         sqlCommand.Connection = connection;
@@ -133,6 +133,6 @@ public class GroceryDatabaseContext
 
         return stores;
     }
-    }
+}
     
         

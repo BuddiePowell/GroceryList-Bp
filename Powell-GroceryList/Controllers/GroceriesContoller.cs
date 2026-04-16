@@ -11,17 +11,17 @@ namespace Powell_GroceryList.Controllers
 {
     public class GroceriesController : Controller
     {
-        private GroceryDatabaseContext _databaseContext;
+        private IGroceryRepository _repository;
         
 
-        public GroceriesController(GroceryDatabaseContext databaseContext)
+        public GroceriesController(IGroceryRepository repository)
         {
-            _databaseContext = databaseContext;
+            _repository = repository;
         }
         public IActionResult Index()
 
         {
-            List<GroceryItem> groceryItems = _databaseContext.GetAllGroceryItems();
+            List<GroceryItem> groceryItems = _repository.GetAllGroceryItems();
 
             return View(groceryItems);
         }
@@ -30,7 +30,7 @@ namespace Powell_GroceryList.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.AvailableStores = _databaseContext.GetAllStores();
+            ViewBag.AvailableStores = _repository.GetAllStores();
 
             return View();
         }
@@ -41,13 +41,13 @@ namespace Powell_GroceryList.Controllers
             if (ModelState.IsValid == true)
             {
                 // insert the grocery items into the database
-                _databaseContext.AddGroceryItem(groceryItem);
+                _repository.AddGroceryItem(groceryItem);
 
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AvailableStores = _databaseContext.GetAllStores();
+            ViewBag.AvailableStores = _repository.GetAllStores();
 
             return View(groceryItem);
         }

@@ -7,16 +7,16 @@ namespace Powell_GroceryList.Controllers
 {
     public class StoresController : Controller
     {
-        private GroceryDatabaseContext _databaseContext;
+        private IGroceryRepository _repository;
 
-        public StoresController(GroceryDatabaseContext databaseContext)
+        public StoresController(IGroceryRepository repository)
         {
-            _databaseContext = databaseContext;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            List<Store> stores = _databaseContext.GetAllStores();
+            List<Store> stores = _repository.GetAllStores();
 
             return View(stores);
         }
@@ -24,7 +24,7 @@ namespace Powell_GroceryList.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.AvailableStores = _databaseContext.GetAllStores();
+            ViewBag.AvailableStores = _repository.GetAllStores();
             
             return View();
         }
@@ -35,12 +35,12 @@ namespace Powell_GroceryList.Controllers
             if (ModelState.IsValid == true)
             {
                 // insert the newly added store to the database
-                _databaseContext.AddStore(store);
+                _repository.AddStore(store);
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AvailableStores = _databaseContext.GetAllStores();
+            ViewBag.AvailableStores = _repository.GetAllStores();
 
             return View(store);
         }
