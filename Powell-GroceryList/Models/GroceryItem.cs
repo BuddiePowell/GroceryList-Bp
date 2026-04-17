@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Powell_GroceryList.Models
 {
@@ -7,12 +8,12 @@ namespace Powell_GroceryList.Models
         public int Id { get; set; }
 
         [Required]
-       public string Name { get; set; }
+       public string ?Name { get; set; }
 
 
         [Required]
         public int StoreId { get; set; }
 
-        public Store? Store { get; set; }
+        public Store ?Store { get; set; }
     }
 }
